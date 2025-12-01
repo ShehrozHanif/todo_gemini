@@ -1,0 +1,8 @@
+node_modules/
+.env*
+dist/
+build/
+*.log
+.next/
+.vercel/
+C:/Users/Haji/.gemini/tmp/
