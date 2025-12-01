@@ -16,12 +16,26 @@ interface QueuedRequest {
 // Queue for offline requests
 let requestQueue: QueuedRequest[] = [];
 
-/**
- * Checks if the browser is online.
- * @returns {boolean} True if online, false otherwise.
- */
-function isOnline(): boolean {
-  return navigator.onLine;
+// Define a type for the expected API error structure
+interface ApiErrorResponse {
+  message: string;
+  statusCode?: number;
+  // Add other common error properties if known
+}
+
+// Helper function to safely parse error response
+async function parseErrorResponse(response: Response): Promise<ApiErrorResponse | string> {
+  try {
+    const text = await response.text();
+    if (!text) {
+      return `API error: ${response.status} ${response.statusText}`;
+    }
+    const json = JSON.parse(text);
+    return json; // Assuming the JSON contains a message property
+  } catch (parseError) {
+    // If text is not valid JSON, return the raw text or a generic message
+    return text || `API error: ${response.status} ${response.statusText}`;
+  }
 }
 
 /**
@@ -46,28 +60,31 @@ async function sendRequest(method: string, url: string, data?: any): Promise<any
   const response = await fetch(url, options);
 
   if (!response.ok) {
-    let errorData = await response.text();
-    try {
-        errorData = JSON.parse(errorData); // Try parsing as JSON if it's not empty
-    } catch {
-        // Not a JSON response, use as is
-    }
-    throw new Error(errorData.message || `API error: ${response.status} ${response.statusText}`);
+    const errorBody = await parseErrorResponse(response);
+    const errorMessage = typeof errorBody === 'string'
+      ? errorBody
+      : errorBody.message || `API error: ${response.status} ${response.statusText}`;
+    throw new Error(errorMessage);
   }
 
   // Handle cases where response might be 204 No Content
   if (response.status === 204) {
-      return {};
+    return {};
   }
 
-  return response.json();
+  try {
+    return await response.json();
+  } catch (error) {
+    console.error("Error parsing successful response JSON:", error);
+    throw new Error(`Failed to parse response from ${url}: ${error instanceof Error ? error.message : String(error)}`);
+  }
 }
 
 /**
  * Processes the queue of failed/offline requests.
  */
 async function processQueue(): Promise<void> {
-  if (isOnline() && requestQueue.length > 0) {
+  if (typeof window !== 'undefined' && navigator.onLine && requestQueue.length > 0) {
     console.log(`Online again, processing ${requestQueue.length} queued requests.`);
     const failedRequests: QueuedRequest[] = [];
 
@@ -75,7 +92,7 @@ async function processQueue(): Promise<void> {
       try {
         const result = await sendRequest(req.method, req.url, req.data);
         req.resolve(result);
-      } catch (error) {
+      } catch (error: unknown) { // Explicitly type error as unknown
         console.error('Failed to process queued request:', req, error);
         failedRequests.push(req); // Re-add to failed queue
       }
@@ -88,7 +105,9 @@ async function processQueue(): Promise<void> {
 }
 
 // Listen for online/offline events to process the queue
-window.addEventListener('online', processQueue);
+if (typeof window !== 'undefined') {
+  window.addEventListener('online', processQueue);
+}
 
 /**
  * Generic API client function that handles offline queueing.
@@ -100,7 +119,7 @@ window.addEventListener('online', processQueue);
 async function apiCall(method: string, endpoint: string, data?: any): Promise<any> {
   const url = `${API_BASE_URL}${endpoint}`;
 
-  if (!isOnline() && method !== 'GET') { // Don't queue GETs as they might return stale data
+  if (typeof window !== 'undefined' && !navigator.onLine && method !== 'GET') { // Don't queue GETs as they might return stale data
     return new Promise<any>((resolve, reject) => {
       requestQueue.push({ method, url, data, resolve, reject });
       console.warn(`Offline: Request ${method} ${url} queued.`);
@@ -119,4 +138,7 @@ export const taskApiClient = {
 };
 
 // Initial processing attempt in case we start offline and come online later
-processQueue();
+if (typeof window !== 'undefined') {
+  processQueue();
+}
+
