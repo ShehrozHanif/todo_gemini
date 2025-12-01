@@ -28,12 +28,12 @@ Tasks marked with `[P]` can potentially be executed in parallel. For example:
 
 Goal: Initialize the project, configure development tools, and establish the basic project structure.
 
-- [ ] T001 Create Next.js project with TypeScript, `npm init next-app . --ts`
-- [ ] T002 Configure ESLint for linting and Prettier for code formatting.
-- [ ] T003 Set up Jest and React Testing Library for testing.
-- [ ] T004 Define and implement initial folder structure as per `plan.md` (e.g., `frontend/src/components`, `backend/src/api`).
-- [ ] T005 Configure Vercel deployment for CI/CD setup (initial `.github/workflows/main.yml` or similar).
-- [ ] T006 Implement basic performance monitoring/logging setup (e.g., simple console logs for operation duration).
+- [x] T001 Create Next.js project with TypeScript, `npm init next-app . --ts`
+- [x] T002 Configure ESLint for linting and Prettier for code formatting.
+- [x] T003 Set up Jest and React Testing Library for testing.
+- [x] T004 Define and implement initial folder structure as per `plan.md` (e.g., `frontend/src/components`, `backend/src/api`).
+- [x] T005 Configure Vercel deployment for CI/CD setup (initial `.github/workflows/main.yml` or similar).
+- [x] T006 Implement basic performance monitoring/logging setup (e.g., simple console logs for operation duration).
 
 ---
 
@@ -41,8 +41,8 @@ Goal: Initialize the project, configure development tools, and establish the bas
 
 Goal: Establish reusable components, hooks, and utilities that will be used across multiple user stories.
 
-- [ ] T007 Create UUID generation utility `frontend/src/utils/uuid.ts` or `backend/src/utils/uuid.ts` (depending on where tasks are initially generated).
-- [ ] T008 Define core `Task` TypeScript interfaces/types in `frontend/src/types/task.ts` and `backend/src/types/task.ts`.
+- [x] T007 Create UUID generation utility `frontend/src/utils/uuid.ts` or `backend/src/utils/uuid.ts` (depending on where tasks are initially generated).
+- [x] T008 Define core `Task` TypeScript interfaces/types in `frontend/src/types/task.ts` and `backend/src/types/task.ts`.
 - [ ] T009 Implement a generic API client utility `frontend/src/services/api-client.ts` to interact with backend routes.
 - [ ] T010 Implement a LocalStorage utility `frontend/src/utils/localStorage.ts` for task persistence.
 
@@ -62,14 +62,14 @@ Goal: Implement the core Create, Read, Update, and Delete functionality for task
 
 ### Tasks
 
-- [ ] T011 [US1] Create `TaskForm` component for adding new tasks in `frontend/src/components/TaskForm.tsx`.
-- [ ] T012 [P] [US1] Create `TaskItem` component for displaying a single task and inline editing in `frontend/src/components/TaskItem.tsx`.
-- [ ] T013 [P] [US1] Create `TaskList` component to render all tasks using `TaskItem`s in `frontend/src/components/TaskList.tsx`.
-- [ ] T014 [US1] Implement basic state management for tasks (e.g., using `useState` or `useReducer`) within `frontend/src/pages/index.tsx` or a dedicated context.
-- [ ] T015 [US1] Integrate `TaskForm` and `TaskList` into the main application page `frontend/src/pages/index.tsx`.
-- [ ] T016 [US1] Implement client-side validation for task title (1-100 characters, not empty) in `frontend/src/components/TaskForm.tsx`.
-- [ ] T017 [US1] Add Jest unit tests for `TaskForm`, `TaskItem`, and `TaskList` components in `frontend/src/components/__tests__/TaskForm.test.tsx`, etc.
-- [ ] T018 [US1] Add integration tests for CRUD operations on the UI using React Testing Library.
+- [x] T011 [US1] Create `TaskForm` component for adding new tasks in `frontend/src/components/TaskForm.tsx`.
+- [x] T012 [P] [US1] Create `TaskItem` component for displaying a single task and inline editing in `frontend/src/components/TaskItem.tsx`.
+- [x] T013 [P] [US1] Create `TaskList` component to render all tasks using `TaskItem`s in `frontend/src/components/TaskList.tsx`.
+- [x] T014 [US1] Implement basic state management for tasks (e.g., using `useState` or `useReducer`) within `frontend/src/pages/index.tsx` or a dedicated context.
+- [x] T015 [US1] Integrate `TaskForm` and `TaskList` into the main application page `frontend/src/pages/index.tsx`.
+- [x] T016 [US1] Implement client-side validation for task title (1-100 characters, not empty) in `frontend/src/components/TaskForm.tsx`.
+- [x] T017 [US1] Add Jest unit tests for `TaskForm`, `TaskItem`, and `TaskList` components in `frontend/src/components/__tests__/TaskForm.test.tsx`, etc.
+- [x] T018 [US1] Add integration tests for CRUD operations on the UI using React Testing Library.
 
 ---
 
@@ -86,11 +86,11 @@ Goal: Enable users to filter tasks by status (All, Completed, Pending) and prior
 
 ### Tasks
 
-- [ ] T019 [P] [US2] Create `FilterControls` component with status and priority selection in `frontend/src/components/FilterControls.tsx`.
+- [x] T019 [P] [US2] Create `FilterControls` component with status and priority selection in `frontend/src/components/FilterControls.tsx`.
 - [ ] T020 [US2] Implement filtering logic within the state management layer of `frontend/src/pages/index.tsx` (or context).
-- [ ] T021 [US2] Integrate `FilterControls` with `TaskList` to apply filters.
+- [x] T021 [US2] Integrate `FilterControls` with `TaskList` to apply filters.
 - [ ] T022 [US2] Implement default sorting by `createdAt` (newest first).
-- [ ] T023 [US2] Add Jest unit tests for `FilterControls` component and filtering logic.
+- [x] T023 [US2] Add Jest unit tests for `FilterControls` component and filtering logic.
 
 ---
 
@@ -127,7 +127,7 @@ Goal: Ensure task persistence across browser reloads and provide a robust offlin
 - [ ] T027 [US4] Modify task state management to sync with `LocalStorage` using the `frontend/src/utils/localStorage.ts` utility.
 - [ ] T028 [US4] Implement network status detection and display an offline notification banner in `frontend/src/components/OfflineBanner.tsx`.
 - [ ] T029 [US4] Develop a queueing mechanism for API calls in `frontend/src/services/api-client.ts` to store requests during offline periods.
-- [ ] T030 [US4] Implement logic to process the API call queue and sync with the backend when online.
+- [x] T030 [US4] Implement logic to process the API call queue and sync with the backend when online.
 - [ ] T031 [US4] Implement conflict resolution strategy (last-write-wins) for tasks, including user notification for overwrites.
 - [ ] T032 [US4] Add integration tests for LocalStorage persistence, offline behavior, queuing, and conflict resolution.
 

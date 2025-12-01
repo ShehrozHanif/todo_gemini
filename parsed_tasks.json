@@ -1,0 +1,427 @@
+[
+  {
+    "title": "Setup",
+    "goal": "Initialize the project, configure development tools, and establish the basic project structure.",
+    "tasks": [
+      {
+        "id": "T001",
+        "description": "Create Next.js project with TypeScript, `npm init next-app . --ts`",
+        "isCompleted": true,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T002",
+        "description": "Configure ESLint for linting and Prettier for code formatting.",
+        "isCompleted": true,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T003",
+        "description": "Set up Jest and React Testing Library for testing.",
+        "isCompleted": true,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T004",
+        "description": "Define and implement initial folder structure as per `plan.md` (e.g., `frontend/src/components`, `backend/src/api`).",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T005",
+        "description": "Configure Vercel deployment for CI/CD setup (initial `.github/workflows/main.yml` or similar).",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T006",
+        "description": "Implement basic performance monitoring/logging setup (e.g., simple console logs for operation duration).",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      }
+    ]
+  },
+  {
+    "title": "Foundational Components & Utilities",
+    "goal": "Establish reusable components, hooks, and utilities that will be used across multiple user stories.",
+    "tasks": [
+      {
+        "id": "T007",
+        "description": "Create UUID generation utility `frontend/src/utils/uuid.ts` or `backend/src/utils/uuid.ts` (depending on where tasks are initially generated).",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T008",
+        "description": "Define core `Task` TypeScript interfaces/types in `frontend/src/types/task.ts` and `backend/src/types/task.ts`.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T009",
+        "description": "Implement a generic API client utility `frontend/src/services/api-client.ts` to interact with backend routes.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T010",
+        "description": "Implement a LocalStorage utility `frontend/src/utils/localStorage.ts` for task persistence.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      }
+    ]
+  },
+  {
+    "title": "User Story 1: Task CRUD",
+    "goal": "Implement the core Create, Read, Update, and Delete functionality for tasks, including inline editing.",
+    "tasks": [
+      {
+        "id": "T011",
+        "description": "Create `TaskForm` component for adding new tasks in `frontend/src/components/TaskForm.tsx`.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US1"
+      },
+      {
+        "id": "T012",
+        "description": "Create `TaskItem` component for displaying a single task and inline editing in `frontend/src/components/TaskItem.tsx`.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US1"
+      },
+      {
+        "id": "T013",
+        "description": "Create `TaskList` component to render all tasks using `TaskItem`s in `frontend/src/components/TaskList.tsx`.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US1"
+      },
+      {
+        "id": "T014",
+        "description": "Implement basic state management for tasks (e.g., using `useState` or `useReducer`) within `frontend/src/pages/index.tsx` or a dedicated context.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US1"
+      },
+      {
+        "id": "T015",
+        "description": "Integrate `TaskForm` and `TaskList` into the main application page `frontend/src/pages/index.tsx`.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US1"
+      },
+      {
+        "id": "T016",
+        "description": "Implement client-side validation for task title (1-100 characters, not empty) in `frontend/src/components/TaskForm.tsx`.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US1"
+      },
+      {
+        "id": "T017",
+        "description": "Add Jest unit tests for `TaskForm`, `TaskItem`, and `TaskList` components in `frontend/src/components/__tests__/TaskForm.test.tsx`, etc.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US1"
+      },
+      {
+        "id": "T018",
+        "description": "Add integration tests for CRUD operations on the UI using React Testing Library.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US1"
+      }
+    ]
+  },
+  {
+    "title": "User Story 2: Filters",
+    "goal": "Enable users to filter tasks by status (All, Completed, Pending) and priority (Low, Medium, High).",
+    "tasks": [
+      {
+        "id": "T019",
+        "description": "Create `FilterControls` component with status and priority selection in `frontend/src/components/FilterControls.tsx`.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US2"
+      },
+      {
+        "id": "T020",
+        "description": "Implement filtering logic within the state management layer of `frontend/src/pages/index.tsx` (or context).",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US2"
+      },
+      {
+        "id": "T021",
+        "description": "Integrate `FilterControls` with `TaskList` to apply filters.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US2"
+      },
+      {
+        "id": "T022",
+        "description": "Implement default sorting by `createdAt` (newest first).",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US2"
+      },
+      {
+        "id": "T023",
+        "description": "Add Jest unit tests for `FilterControls` component and filtering logic.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US2"
+      }
+    ]
+  },
+  {
+    "title": "User Story 3: Task Priority",
+    "goal": "Visually indicate task priority and allow sorting by priority.",
+    "tasks": [
+      {
+        "id": "T024",
+        "description": "Enhance `TaskItem` component to display color-coded priority badges based on `priority` prop in `frontend/src/components/TaskItem.tsx`.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US3"
+      },
+      {
+        "id": "T025",
+        "description": "(Optional) Add a sort control for priority in `frontend/src/components/FilterControls.tsx`.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US3"
+      },
+      {
+        "id": "T026",
+        "description": "Add Jest unit tests for priority display and optional sorting logic.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US3"
+      }
+    ]
+  },
+  {
+    "title": "User Story 4: Local Storage & Offline Handling",
+    "goal": "Ensure task persistence across browser reloads and provide a robust offline experience with conflict resolution.",
+    "tasks": [
+      {
+        "id": "T027",
+        "description": "Modify task state management to sync with `LocalStorage` using the `frontend/src/utils/localStorage.ts` utility.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US4"
+      },
+      {
+        "id": "T028",
+        "description": "Implement network status detection and display an offline notification banner in `frontend/src/components/OfflineBanner.tsx`.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US4"
+      },
+      {
+        "id": "T029",
+        "description": "Develop a queueing mechanism for API calls in `frontend/src/services/api-client.ts` to store requests during offline periods.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US4"
+      },
+      {
+        "id": "T030",
+        "description": "Implement logic to process the API call queue and sync with the backend when online.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US4"
+      },
+      {
+        "id": "T031",
+        "description": "Implement conflict resolution strategy (last-write-wins) for tasks, including user notification for overwrites.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US4"
+      },
+      {
+        "id": "T032",
+        "description": "Add integration tests for LocalStorage persistence, offline behavior, queuing, and conflict resolution.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US4"
+      }
+    ]
+  },
+  {
+    "title": "User Story 5: Backend Integration",
+    "goal": "Implement Next.js API routes for task CRUD operations and integrate frontend with these routes.",
+    "tasks": [
+      {
+        "id": "T033",
+        "description": "Implement `GET /tasks` API route in `backend/src/api/tasks/route.ts` (Next.js App Router API route or similar).",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US5"
+      },
+      {
+        "id": "T034",
+        "description": "Implement `POST /tasks` API route in `backend/src/api/tasks/route.ts`.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US5"
+      },
+      {
+        "id": "T035",
+        "description": "Implement `PUT /tasks/{id}` API route in `backend/src/api/tasks/[id]/route.ts`.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US5"
+      },
+      {
+        "id": "T036",
+        "description": "Implement `DELETE /tasks/{id}` API route in `backend/src/api/tasks/[id]/route.ts`.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US5"
+      },
+      {
+        "id": "T037",
+        "description": "Implement server-side validation for task data in `backend/src/utils/validation.ts`.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US5"
+      },
+      {
+        "id": "T038",
+        "description": "Configure rate-limiting for API routes (e.g., using a middleware or a library).",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US5"
+      },
+      {
+        "id": "T039",
+        "description": "Modify `frontend/src/services/api-client.ts` to use the new backend API routes for all CRUD operations.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US5"
+      },
+      {
+        "id": "T040",
+        "description": "Add integration tests for all API routes (backend) and full-stack integration tests for frontend-to-backend communication.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US5"
+      }
+    ]
+  },
+  {
+    "title": "User Story 6: Optional Enhancements",
+    "goal": "Implement optional, non-critical features that enhance user experience. These can be prioritized separately.",
+    "tasks": [
+      {
+        "id": "T041",
+        "description": "Implement drag-and-drop reordering for `TaskItem`s within `TaskList` in `frontend/src/components/TaskList.tsx`.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US6"
+      },
+      {
+        "id": "T042",
+        "description": "Ensure drag-and-drop reordering persists to LocalStorage and Backend API.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US6"
+      },
+      {
+        "id": "T043",
+        "description": "Implement an undo mechanism for the last task add, delete, or edit action.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US6"
+      },
+      {
+        "id": "T044",
+        "description": "Create and integrate a notification (toast/snackbar) system for task completion in `frontend/src/components/Notification.tsx`.",
+        "isCompleted": false,
+        "isParallel": true,
+        "userStory": "US6"
+      },
+      {
+        "id": "T045",
+        "description": "Add unit/integration tests for optional enhancements.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": "US6"
+      }
+    ]
+  },
+  {
+    "title": "Polish & Cross-Cutting Concerns",
+    "goal": "Address cross-cutting concerns like accessibility, performance, comprehensive testing, documentation, and deployment readiness.",
+    "tasks": [
+      {
+        "id": "T046",
+        "description": "Perform accessibility audit and implement fixes (keyboard navigation, ARIA, color contrast) across `frontend/src/components/` and `frontend/src/pages/`.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T047",
+        "description": "Implement performance optimizations (memoization, lazy loading, list virtualization if needed) in `frontend/src/components/`.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T048",
+        "description": "Write comprehensive unit and integration tests to achieve ≥80% coverage for core functionality.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T049",
+        "description": "Create/update `README.md` with project overview, setup, features, and deployment instructions.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T050",
+        "description": "Generate/update API documentation (`docs/api.md` or similar) for backend endpoints.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T051",
+        "description": "Ensure all components, functions, and hooks have appropriate inline comments.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T052",
+        "description": "Finalize Vercel deployment configuration and CI/CD pipeline (`.github/workflows/main.yml`).",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      },
+      {
+        "id": "T053",
+        "description": "Conduct final end-to-end testing and performance profiling before release.",
+        "isCompleted": false,
+        "isParallel": false,
+        "userStory": null
+      }
+    ]
+  }
+]
