@@ -27,7 +27,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onUpdateTask, onDeleteTask, 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="task-list">
-        {(provided) => (
+        {(provided, snapshot) => (
           <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-2">
             {tasks.length === 0 ? (
               <p className="text-gray-500 text-center">No tasks yet. Add one above!</p>
@@ -67,89 +67,3 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onUpdateTask, onDeleteTask, 
 };
 
 export default TaskList;
-
-
-
-
-
-
-// import React from 'react';
-// import { Task } from '../types/task';
-// import TaskItem from './TaskItem';
-// import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
-
-// interface TaskListProps {
-//   tasks: Task[];
-//   onUpdateTask: (updatedTask: Task) => void;
-//   onDeleteTask: (id: string) => void;
-//   onReorderTasks: (reorderedTasks: Task[]) => void;
-// }
-
-// const TaskList: React.FC<TaskListProps> = ({
-//   tasks,
-//   onUpdateTask,
-//   onDeleteTask,
-//   onReorderTasks
-// }) => {
-
-//   const onDragEnd = (result: DropResult) => {
-//     if (!result.destination) return;
-
-//     const reordered = Array.from(tasks);
-//     const [removed] = reordered.splice(result.source.index, 1);
-//     reordered.splice(result.destination.index, 0, removed);
-
-//     onReorderTasks(reordered);
-//   };
-
-//   return (
-//     <DragDropContext onDragEnd={onDragEnd}>
-//       <Droppable droppableId="task-list">
-//         {(provided, snapshot) => (
-//           <div
-//             {...provided.droppableProps}
-//             ref={provided.innerRef}
-//             className="space-y-2"
-//           >
-//             {tasks.length === 0 && (
-//               <p className="text-gray-500 text-center">
-//                 No tasks yet. Add one above!
-//               </p>
-//             )}
-
-//             {tasks.map((task, index) => (
-//               <Draggable key={task.id} draggableId={task.id} index={index}>
-//                 {(provided, snapshot) => (
-//                   <div
-//                     ref={provided.innerRef}
-//                     {...provided.draggableProps}
-//                     {...provided.dragHandleProps}
-//                     style={{
-//                       ...provided.draggableProps.style,
-//                       backgroundColor: snapshot.isDragging ? 'lightgreen' : 'white',
-//                       borderRadius: '0.5rem',
-//                       boxShadow: snapshot.isDragging
-//                         ? '0 4px 8px rgba(0,0,0,0.2)'
-//                         : 'none',
-//                       transition: '0.2s ease'
-//                     }}
-//                   >
-//                     <TaskItem
-//                       task={task}
-//                       onUpdateTask={onUpdateTask}
-//                       onDeleteTask={onDeleteTask}
-//                     />
-//                   </div>
-//                 )}
-//               </Draggable>
-//             ))}
-
-//             {provided.placeholder}
-//           </div>
-//         )}
-//       </Droppable>
-//     </DragDropContext>
-//   );
-// };
-
-// export default TaskList;

@@ -87,7 +87,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onUpdateTask, onDeleteTask })
             </select>
           </>
         ) : (
-          <span className={`ml-4 text-lg ${task.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
+          <span className={`ml-4 text-lg max-w-xs truncate overflow-hidden ${task.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
             {task.title}
           </span>
         )}
@@ -100,7 +100,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onUpdateTask, onDeleteTask })
         )}
       </div>
 
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 flex-shrink-0">
         {isEditing ? (
           <>
             <button

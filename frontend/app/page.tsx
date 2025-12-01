@@ -152,7 +152,6 @@ export default function Home() {
     saveTasksToLocalStorage(tasks);
   }, [tasks]);
 
-  // FIX: no toast inside setState callback!
   const addTask = (task: Task) => {
     setTasks((prevTasks) => [...prevTasks, task]);
     toast.success(`Task "${task.title}" added!`);
