@@ -2,7 +2,7 @@
 import React from 'react';
 import { Task } from '../types/task';
 import TaskItem from './TaskItem';
-import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 
 interface TaskListProps {
   tasks: Task[];
